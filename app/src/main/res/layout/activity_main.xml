@@ -5,17 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".MainActivity">
+    android:onClick="btnLogarOnclick"
+    tools:context=".Controller.MainActivity">
 
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnLogar"
         style="@style/botoes"
+        android:onClick="btnLogarOnclick"
         android:text="Logar"
-        app:layout_constraintStart_toEndOf="@id/containerComponents"
         app:layout_constraintEnd_toEndOf="@id/containerComponents"
-        app:layout_constraintTop_toBottomOf="@id/edtSenha"
-        />
+        app:layout_constraintStart_toEndOf="@id/containerComponents"
+        app:layout_constraintTop_toBottomOf="@id/edtSenha" />
 
     <View
         android:id="@+id/containerComponents"

@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APP_FIREBASE">
         <activity
-            android:name=".MainActivity"
+            android:name=".Controller.Home"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".Controller.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
