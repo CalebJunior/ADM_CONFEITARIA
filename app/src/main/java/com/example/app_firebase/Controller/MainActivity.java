@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
             funcionario.setEmail(email);
             funcionario.setPassword(pass);
             funcionario.setNome("Giga");
+            finish();
             logarFunc();
         }
 

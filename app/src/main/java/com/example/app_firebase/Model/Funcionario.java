@@ -24,7 +24,7 @@ import java.util.ArrayList;
 
 
 public class Funcionario {
-
+    private String id_funcionario;
     private String email;
     private String password;
     private String nome;
@@ -58,8 +58,13 @@ public class Funcionario {
         this.nome = nome;
     }
 
+    public String getId_funcionario() {
+        return id_funcionario;
+    }
 
-
+    public void setId_funcionario(String id_funcionario) {
+        this.id_funcionario = id_funcionario;
+    }
 
 
 }
