@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
             funcionario.setEmail(email);
             funcionario.setPassword(pass);
             funcionario.setNome("Giga");
-            finish();
             logarFunc();
         }
 
@@ -68,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this,"Dados aceitos",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this , Home.class);
                     startActivity(intent);
+                    finish();
                 }
                 else{
                     Toast.makeText(MainActivity.this,"Dados não aceitos",Toast.LENGTH_SHORT).show();
