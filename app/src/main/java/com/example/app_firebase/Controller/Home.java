@@ -27,14 +27,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity  {
     private RecyclerView recyclerView;
     List<Pedidos> Pedido;
     PedidosAdapter pedidosAdapter;
 
     private DatabaseReference bd = config.getbd();
     private DatabaseReference pd = bd.child("Pedido");
-    Query produtos = pd.orderByChild("Status").equalTo(1);
+    Query pedidos = pd.orderByChild("Status").equalTo(1);
 
 
     @Override
@@ -49,7 +49,7 @@ public class Home extends AppCompatActivity {
 
 
 
-        produtos.addValueEventListener(new ValueEventListener() {
+        pedidos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dados : snapshot.getChildren()){
@@ -70,4 +70,5 @@ public class Home extends AppCompatActivity {
         });
 
     }
+
 }

@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 public class Base64Custom {
 
-    public String converte64(String texto){
+    public static String converte64(String texto){
 
         return Base64.encodeToString(texto.getBytes(), Base64.DEFAULT);
     }
