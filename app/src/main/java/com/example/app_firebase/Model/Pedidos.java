@@ -2,10 +2,11 @@ package com.example.app_firebase.Model;
 
 public class Pedidos {
     private String ID_Cliente;
-    private String ID_Produto;
     private long Status;
+    private double ValorTotal;
     private String Dt_entrega;
     private String Dt_pedido;
+
 
     public Pedidos() {
     }
@@ -18,13 +19,6 @@ public class Pedidos {
         this.ID_Cliente = ID_Cliente;
     }
 
-    public String getID_Produto() {
-        return ID_Produto;
-    }
-
-    public void setID_Produto(String ID_Produto) {
-        this.ID_Produto = ID_Produto;
-    }
 
     public long getStatus() {
         return Status;
@@ -48,5 +42,12 @@ public class Pedidos {
 
     public void setDt_pedido(String dt_pedido) {
         Dt_pedido = dt_pedido;
+    }
+    public double getValorTotal() {
+        return ValorTotal;
+    }
+
+    public void setValorTotal(double valorTotal) {
+        ValorTotal = valorTotal;
     }
 }

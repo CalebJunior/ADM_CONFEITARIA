@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         else{
             funcionario = new Funcionario();
             funcionario.setEmail(email);
-            funcionario.setPassword(pass);
             funcionario.setNome("Giga");
             logarFunc();
         }
@@ -60,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void logarFunc(){
         auth = config.getAutenticacao();
-        auth.signInWithEmailAndPassword(funcionario.getEmail(),funcionario.getPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+        auth.signInWithEmailAndPassword(funcionario.getEmail(),senha.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){

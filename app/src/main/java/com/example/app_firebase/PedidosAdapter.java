@@ -1,5 +1,8 @@
 package com.example.app_firebase;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +12,10 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.savedstate.SavedStateRegistry;
 
+import com.example.app_firebase.Controller.Adm_activity;
+import com.example.app_firebase.Controller.Home;
 import com.example.app_firebase.Model.Clientes;
 import com.example.app_firebase.Model.ItensPedidos;
 import com.example.app_firebase.Model.Pedidos;
@@ -25,13 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidosAdapter extends RecyclerView.Adapter {
-
-
+    DatabaseReference bd = config.getbd();
     List<Pedidos> pedidosList;
-
-    public PedidosAdapter( List<Pedidos> pedidos) {
-
+    Context Mycontext;
+    List<String> IDS_pedidos;
+    public PedidosAdapter(List<Pedidos> pedidos, Context context,List<String>IDs) {
         this.pedidosList = pedidos;
+        this.Mycontext = context;
     }
 
     @NonNull
@@ -49,7 +55,7 @@ public class PedidosAdapter extends RecyclerView.Adapter {
         Pedidos pedidos = pedidosList.get(position);
 
         //pegando os dados do cliente e os colocando na textView
-        DatabaseReference bd = config.getbd();
+
         DatabaseReference cd = bd.child("Clientes");
         Query clientes = cd.child(pedidos.getID_Cliente());
 
@@ -75,8 +81,20 @@ public class PedidosAdapter extends RecyclerView.Adapter {
         //Configurando Botão
         vhClass.btn_entregue.setOnClickListener(new View.OnClickListener() {
             @Override
+
             public void onClick(View v) {
-                vhClass.txtBairro.setText("Que merda");
+
+                DatabaseReference pd = bd.child("Pedido").child(IDS_pedidos.get(position));
+                Pedidos P = pedidosList.get(position);
+                P.setStatus(0);
+                pd.setValue(P);
+
+                Intent intent = new Intent(v.getContext(), Home.class) ;
+                v.getContext().startActivity(intent);
+                ((Activity)Mycontext).finish();
+                ((Activity)Mycontext).overridePendingTransition(0,0);
+
+
             }
         });
 

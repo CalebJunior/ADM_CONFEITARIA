@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.APP_FIREBASE">
         <activity
+            android:name=".Controller.Adm_activity"
+            android:exported="false" />
+        <activity
+            android:name=".Controller.Produtos_activity"
+            android:exported="false" />
+        <activity
             android:name=".Controller.Home"
             android:exported="false" />
         <activity

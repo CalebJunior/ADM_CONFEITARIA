@@ -20,13 +20,14 @@ import java.util.List;
 
 public class Clientes {
     private String Nome;
+    private String email;
     private String Cpf;
     private  String Bairro;
     private String Rua;
     private String N;
 
 
-    private String email;
+
 
 
 

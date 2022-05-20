@@ -24,31 +24,33 @@ import java.util.ArrayList;
 
 
 public class Funcionario {
-    private String id_funcionario;
-    private String email;
-    private String password;
     private String nome;
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String email) {
+        Email = email;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    private String Email;
+    private String CPF;
 
 
     public Funcionario(){
 
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getNome() {
         return nome;
@@ -58,13 +60,7 @@ public class Funcionario {
         this.nome = nome;
     }
 
-    public String getId_funcionario() {
-        return id_funcionario;
-    }
 
-    public void setId_funcionario(String id_funcionario) {
-        this.id_funcionario = id_funcionario;
-    }
 
 
 }
