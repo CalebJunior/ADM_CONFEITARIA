@@ -11,15 +11,19 @@
         android:theme="@style/Theme.APP_FIREBASE">
         <activity
             android:name=".Controller.Adm_activity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Controller.Produtos_activity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Controller.Home"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".Controller.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

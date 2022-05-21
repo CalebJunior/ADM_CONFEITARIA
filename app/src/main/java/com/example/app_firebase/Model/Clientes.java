@@ -30,9 +30,6 @@ public class Clientes {
 
 
 
-
-
-
     public static String BuscaCliente(String Id_cliente) {
         final List<Clientes> cliente =new ArrayList<>();
         final Clientes[] c = new Clientes[1];

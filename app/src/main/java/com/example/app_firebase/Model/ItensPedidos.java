@@ -4,7 +4,7 @@ public class ItensPedidos {
     private String ID_Pedido;
     private String ID_Produto;
     private int Qtd;
-    private double valor;
+    private double Valor;
 
     public ItensPedidos() {
     }
@@ -34,10 +34,10 @@ public class ItensPedidos {
     }
 
     public double getValor() {
-        return valor;
+        return Valor;
     }
 
     public void setValor(double valor) {
-        this.valor = valor;
+        this.Valor = valor;
     }
 }

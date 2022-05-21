@@ -43,7 +43,7 @@ public class Home extends AppCompatActivity  {
 
     private DatabaseReference bd = config.getbd();
     private DatabaseReference pd = bd.child("Pedido");
-    Query pedidos = pd.orderByChild("Status").equalTo(1);
+    Query pedidos = pd.orderByChild("status").equalTo(1);
 
 
     @Override

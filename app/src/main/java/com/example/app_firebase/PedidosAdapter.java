@@ -12,15 +12,14 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.savedstate.SavedStateRegistry;
 
-import com.example.app_firebase.Controller.Adm_activity;
 import com.example.app_firebase.Controller.Home;
 import com.example.app_firebase.Model.Clientes;
 import com.example.app_firebase.Model.ItensPedidos;
 import com.example.app_firebase.Model.Pedidos;
 import com.example.app_firebase.Model.Produtos;
 import com.example.app_firebase.config.config;
+import com.example.app_firebase.helper.MyCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,12 +30,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PedidosAdapter extends RecyclerView.Adapter {
+
     DatabaseReference bd = config.getbd();
     List<Pedidos> pedidosList;
     Context Mycontext;
     List<String> IDS_pedidos;
+
+
+
+
     public PedidosAdapter(List<Pedidos> pedidos, Context context,List<String>IDs) {
         this.pedidosList = pedidos;
+        this.IDS_pedidos = IDs;
         this.Mycontext = context;
     }
 
@@ -75,6 +80,50 @@ public class PedidosAdapter extends RecyclerView.Adapter {
         vhClass.txtdtEntrega.setText(pedidos.getDt_entrega());
 
 
+        DatabaseReference pd = bd.child("Produtos");
+        DatabaseReference id = bd.child("Itens_pedidos");
+        Query itens = id.orderByChild("ID_Pedido").equalTo(IDS_pedidos.get(position));
+        List<ItensPedidos> itensPedidosList = new ArrayList<ItensPedidos>();
+        List<Produtos> produtosList = new ArrayList<Produtos>();
+        StringBuilder stringBuilder = new StringBuilder();
+
+        itens.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+
+
+                for(DataSnapshot dados : snapshot.getChildren()){
+
+                    ItensPedidos p = dados.getValue(ItensPedidos.class);
+                    itensPedidosList.add(p);
+
+                    Produtos produtos = new Produtos();
+                    produtos.setID(p.getID_Produto());
+                    produtos.readprodutos(new MyCallback() {
+                        @Override
+                        public void onCallback(Produtos produtos) {
+                            produtosList.add(produtos);
+                            stringBuilder.append("\t -"+produtos.getNome()+" "+String.valueOf(p.getQtd())+"x"+String.valueOf(produtos.getValor())+" = "+String.valueOf(p.getValor()+"\n"));
+                            if(produtosList.size()==itensPedidosList.size()){
+                                vhClass.itensPedidos.setText(stringBuilder);
+
+                            }
+                        }
+                    });
+
+
+                }
+
+
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
 
@@ -83,6 +132,9 @@ public class PedidosAdapter extends RecyclerView.Adapter {
             @Override
 
             public void onClick(View v) {
+                Log.i("TESTE", String.valueOf(IDS_pedidos.size()));
+
+
 
                 DatabaseReference pd = bd.child("Pedido").child(IDS_pedidos.get(position));
                 Pedidos P = pedidosList.get(position);
@@ -93,6 +145,8 @@ public class PedidosAdapter extends RecyclerView.Adapter {
                 v.getContext().startActivity(intent);
                 ((Activity)Mycontext).finish();
                 ((Activity)Mycontext).overridePendingTransition(0,0);
+
+
 
 
             }
