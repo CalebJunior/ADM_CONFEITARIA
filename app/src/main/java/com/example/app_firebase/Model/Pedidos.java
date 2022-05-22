@@ -1,53 +1,107 @@
 package com.example.app_firebase.Model;
 
-public class Pedidos {
-    private String ID_Cliente;
-    private long Status;
-    private double ValorTotal;
-    private String Dt_entrega;
-    private String Dt_pedido;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
+public class Pedidos {
+    private String bairro;
+    private String CPF;
+    private String dtaEntrega;
+    private String email;
+    private String nome;
+    private String numero;
+    private String rua;
+    private String status;
+    private String valorTotal;
+
+
+
+    private List<Produtos>produtosList;
 
     public Pedidos() {
+        produtosList = new ArrayList<>();
+
     }
 
-    public String getID_Cliente() {
-        return ID_Cliente;
+    public String getBairro() {
+        return bairro;
     }
 
-    public void setID_Cliente(String ID_Cliente) {
-        this.ID_Cliente = ID_Cliente;
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCPF() {
+        return CPF;
+    }
+
+    public void setCPF(String CPF) {
+        this.CPF = CPF;
+    }
+
+    public String getDtaEntrega() {
+        return dtaEntrega;
+    }
+
+    public void setDtaEntrega(String dtaEntrega) {
+        this.dtaEntrega = dtaEntrega;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 
-    public long getStatus() {
-        return Status;
+    public String getNome() {
+        return nome;
     }
 
-    public void setStatus(long status) {
-        Status = status;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
-    public String getDt_entrega() {
-        return Dt_entrega;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setDt_entrega(String dt_entrega) {
-        Dt_entrega = dt_entrega;
+    public void setNumero(String numero) {
+        this.numero = numero;
     }
 
-    public String getDt_pedido() {
-        return Dt_pedido;
+    public String getRua() {
+        return rua;
     }
 
-    public void setDt_pedido(String dt_pedido) {
-        Dt_pedido = dt_pedido;
-    }
-    public double getValorTotal() {
-        return ValorTotal;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
-    public void setValorTotal(double valorTotal) {
-        ValorTotal = valorTotal;
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getValorTotal() {
+        return valorTotal;
+    }
+
+    public void setValorTotal(String valorTotal) {
+        this.valorTotal = valorTotal;
+    }
+
+    public List<Produtos> getProdutosList() {
+        return produtosList;
+    }
+
+    public void setProdutosList(Produtos produtos) {
+        this.produtosList.add(produtos) ;
     }
 }

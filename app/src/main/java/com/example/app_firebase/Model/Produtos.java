@@ -11,9 +11,11 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class Produtos {
+    private String imagem;
     private String Nome;
-    private double Valor;
-    private String Descricao;
+    private String Valor;
+    private String sabor;
+
     private String ID;
 
 
@@ -21,6 +23,14 @@ public class Produtos {
 
 
     public Produtos() {
+    }
+
+    public String getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
     public String getNome() {
@@ -31,21 +41,14 @@ public class Produtos {
         Nome = nome;
     }
 
-    public double getValor() {
+    public String getValor() {
         return Valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(String  valor) {
         Valor = valor;
     }
 
-    public String getDescricao() {
-        return Descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        Descricao = descricao;
-    }
 
     public String getID() {
         return ID;
@@ -53,6 +56,14 @@ public class Produtos {
 
     public void setID(String ID) {
         this.ID = ID;
+    }
+
+    public String getSabor() {
+        return sabor;
+    }
+
+    public void setSabor(String sabor) {
+        this.sabor = sabor;
     }
 
     public void readprodutos(MyCallback myCallback){

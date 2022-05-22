@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.app_firebase.Model.Funcionario;
 import com.example.app_firebase.Model.Pedidos;
+import com.example.app_firebase.Model.Produtos;
 import com.example.app_firebase.PedidosAdapter;
 import com.example.app_firebase.R;
 import com.example.app_firebase.config.config;
@@ -42,8 +43,9 @@ public class Home extends AppCompatActivity  {
     PedidosAdapter pedidosAdapter;
 
     private DatabaseReference bd = config.getbd();
-    private DatabaseReference pd = bd.child("Pedido");
-    Query pedidos = pd.orderByChild("status").equalTo(1);
+    private DatabaseReference pd = bd.child("pedidos");
+    Query pedidos = pd.orderByChild("status").equalTo("1");
+
 
 
     @Override
@@ -79,25 +81,35 @@ public class Home extends AppCompatActivity  {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         Pedido = new ArrayList<>();
+        List<String> IDs = new ArrayList<>();
         Context context = this;
-        List<String> ID = new ArrayList<>();
 
 
 
         pedidos.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot dados : snapshot.getChildren()){
-                    Pedidos P =dados.getValue(Pedidos.class);
-                    ID.add(dados.getKey());
+                Pedidos P;
+                for(DataSnapshot dadosPedido : snapshot.getChildren()){
+                    Log.i("IDs",dadosPedido.getKey());
+                    IDs.add(dadosPedido.getKey());
 
+                    P =dadosPedido.getValue(Pedidos.class);
+
+
+                    DataSnapshot produtos = dadosPedido.child("listaPedidos");
+                    for(DataSnapshot produto : produtos.getChildren()){
+                        Produtos produtoIns = produto.getValue(Produtos.class);
+                        P.setProdutosList(produtoIns);
+
+                    }
                     Pedido.add(P);
                 }
-                pedidosAdapter = new PedidosAdapter(Pedido,context,ID);
+
+                pedidosAdapter = new PedidosAdapter(Pedido,context,IDs);
                 recyclerView.setAdapter(pedidosAdapter);
 
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Home.this,"Erro de consulta de Pedidos",Toast.LENGTH_SHORT).show();
