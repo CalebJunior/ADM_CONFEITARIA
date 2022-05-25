@@ -7,20 +7,19 @@ import com.example.app_firebase.helper.MyCallback;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.Nullable;
 
 public class Produtos {
     private String imagem;
-    private String Nome;
-    private String Valor;
+    private String nome;
+    private String valor;
     private String sabor;
 
+    @Exclude
     private String ID;
-
-
-
-
 
     public Produtos() {
     }
@@ -34,21 +33,20 @@ public class Produtos {
     }
 
     public String getNome() {
-        return Nome;
+        return nome;
     }
 
     public void setNome(String nome) {
-        Nome = nome;
+        this.nome = nome;
     }
 
     public String getValor() {
-        return Valor;
+        return valor;
     }
 
-    public void setValor(String  valor) {
-        Valor = valor;
+    public void setValor(String valor) {
+        this.valor = valor;
     }
-
 
     public String getID() {
         return ID;

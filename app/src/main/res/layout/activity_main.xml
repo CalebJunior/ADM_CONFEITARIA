@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:onClick="btnLogarOnclick"
-    tools:context=".Controller.MainActivity">
+    tools:context=".ModelView.MainActivity">
 
 
     <androidx.appcompat.widget.AppCompatButton

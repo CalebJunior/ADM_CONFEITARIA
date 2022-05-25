@@ -1,4 +1,4 @@
-package com.example.app_firebase;
+package com.example.app_firebase.ModelView;
 
 import android.app.Activity;
 import android.content.Context;
@@ -13,20 +13,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.app_firebase.Controller.Home;
-import com.example.app_firebase.Model.Clientes;
-import com.example.app_firebase.Model.ItensPedidos;
+import com.example.app_firebase.ModelView.Home;
 import com.example.app_firebase.Model.Pedidos;
 import com.example.app_firebase.Model.Produtos;
+import com.example.app_firebase.R;
 import com.example.app_firebase.config.config;
-import com.example.app_firebase.helper.MyCallback;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PedidosAdapter extends RecyclerView.Adapter {
@@ -62,6 +55,16 @@ public class PedidosAdapter extends RecyclerView.Adapter {
         vhClass.txtdtEntrega.setText(pedidos.getDtaEntrega());
         vhClass.txtRua.setText(pedidos.getRua());
         vhClass.txtBairro.setText(pedidos.getBairro());
+        vhClass.txtContatos.setText("EMAIL: "+pedidos.getEmail()+"\nNumero: "+pedidos.getNumero());
+
+        //listando itens de pedido
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for(Produtos produtos : pedidos.getProdutosList()){
+            stringBuilder.append("\t-"+produtos.getNome()+"\n\t\t+Sabor:"+produtos.getSabor()+" \n\t\t+Valor:"+produtos.getValor()+"\n");
+        }
+        vhClass.itensPedidos.setText(stringBuilder);
+        vhClass.txtValor.setText("Valor Total: "+pedidos.getValorTotal());
 
 
         //Configurando Botão
@@ -95,6 +98,8 @@ public class PedidosAdapter extends RecyclerView.Adapter {
         TextView txtBairro;
         TextView txtdtEntrega;
         TextView itensPedidos;
+        TextView txtContatos;
+        TextView txtValor;
         Button btn_entregue;
 
         public ViewHolderClass(@NonNull View itemView) {
@@ -105,6 +110,8 @@ public class PedidosAdapter extends RecyclerView.Adapter {
             txtdtEntrega = itemView.findViewById(R.id.txtDt_entrega);
             itensPedidos =itemView.findViewById(R.id.txtItemPedido);
             btn_entregue = itemView.findViewById(R.id.btn_Entregue);
+            txtContatos = itemView.findViewById(R.id.txtContatos);
+            txtValor = itemView.findViewById(R.id.txtValor);
 
         }
 

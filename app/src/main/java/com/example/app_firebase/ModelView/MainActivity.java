@@ -1,4 +1,4 @@
-package com.example.app_firebase.Controller;
+package com.example.app_firebase.ModelView;
 
 
 import android.content.Intent;
@@ -16,9 +16,13 @@ import com.example.app_firebase.R;
 import com.example.app_firebase.config.config;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
     Button btnlogar;
     private Funcionario funcionario;
     private FirebaseAuth auth;
+
+    DatabaseReference bd = config.getbd();
+    DatabaseReference fd = bd.child("Funcionarios");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +59,26 @@ public class MainActivity extends AppCompatActivity {
             funcionario = new Funcionario();
             funcionario.setEmail(email);
             funcionario.setNome("Giga");
-            logarFunc();
+            fd = bd.child("Funcionarios");
+            Query funcionario = fd.orderByChild("email").equalTo(email);
+
+            funcionario.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if(snapshot!=null){
+                        logarFunc();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,"Dados incorretos",Toast.LENGTH_SHORT).show();
+                    }
+
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
+
         }
 
 
@@ -63,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+
                     Toast.makeText(MainActivity.this,"Dados aceitos",Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(MainActivity.this , Home.class);
                     startActivity(intent);

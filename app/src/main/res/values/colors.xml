@@ -10,4 +10,7 @@
     <color name="paleta1">#eea2bb</color>
     <color name="paleta2">#f9f7f7</color>
     <color name="paleta3">#7ac2ba</color>
+    <color name="cadastrar">#038724</color>
+    <color name="excluir">#B80000</color>
+    <color name="alterar">#F3B600</color>
 </resources>

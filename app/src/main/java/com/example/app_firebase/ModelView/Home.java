@@ -1,26 +1,19 @@
-package com.example.app_firebase.Controller;
+package com.example.app_firebase.ModelView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.ArrayMap;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
-import com.example.app_firebase.Model.Funcionario;
 import com.example.app_firebase.Model.Pedidos;
 import com.example.app_firebase.Model.Produtos;
-import com.example.app_firebase.PedidosAdapter;
 import com.example.app_firebase.R;
 import com.example.app_firebase.config.config;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -32,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class Home extends AppCompatActivity  {
 
